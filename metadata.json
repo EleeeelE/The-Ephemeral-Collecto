@@ -1,0 +1,5 @@
+{
+  "name": "浮生拾遗 (The Ephemeral Collector)",
+  "description": "A digital aesthetics translator that uses Gemini to perceive 'Mono no aware' (the pathos of things) in your photos, converting visual ephemera into multi-sensory poetic moments.",
+  "requestFramePermissions": []
+}
