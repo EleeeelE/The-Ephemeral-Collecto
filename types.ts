@@ -1,9 +1,8 @@
 
 export interface SensoryMoment {
   haiku: {
-    japanese: string;
-    reading: string;
-    translation: string;
+    english: string;
+    chinese: string;
   };
   senses: {
     auditory: string;
@@ -46,3 +45,42 @@ export interface VocabularyItem {
   analysis?: WordAnalysis | null; // Cached AI analysis
   isAnalyzing?: boolean; // Loading state
 }
+
+// --- New Modules Types ---
+
+export enum AppMode {
+  COLLECTOR = 'COLLECTOR',
+  POET = 'POET'
+}
+
+export type CollageStyle = 'newspaper' | 'typewriter' | 'handwritten' | 'magazine-cutout';
+
+export interface CollageFragment {
+  id: string;
+  text: string;
+  style: CollageStyle;
+  rotation: number;
+  x: number;
+  y: number;
+  
+  // Visual Customization Properties
+  width?: number; // Optional override
+  height?: number; // Optional override
+  fontSize?: number;
+  backgroundColor?: string;
+  color?: string;
+  fontFamily?: string;
+  zIndex?: number;
+}
+
+// --- Generator Settings ---
+
+export type VocabularyDifficulty = 'High School' | 'CET-4' | 'CET-6' | 'IELTS/TOEFL' | 'GRE';
+
+export interface GenerationSettings {
+  difficulty: VocabularyDifficulty;
+  quantity: number; // 10 - 50
+  stylePreference: CollageStyle | 'mixed';
+}
+
+export type CanvasBackground = 'dots' | 'grid' | 'paper' | 'dark' | 'clay';

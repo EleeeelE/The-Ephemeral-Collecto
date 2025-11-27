@@ -278,23 +278,24 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
         >
           <div className={`${isThumbnail && !isPrinting ? 'px-2' : 'px-6 py-2'}`}>
             
-            {/* Essence */}
+            {/* Essence (Poetry) */}
             <div className="mb-6 text-center">
                <h3 className="text-[10px] font-bold tracking-widest mb-4 text-gray-400 uppercase flex items-center justify-center gap-2">
                  <Hash size={10} /> Essence
                </h3>
-               <div className="font-serif-jp text-xl mb-2 text-[#2c2c2c] leading-relaxed">
-                 {data.haiku.japanese}
-               </div>
-               <div className="text-[10px] text-gray-500 mb-2 italic">
-                 {data.haiku.reading}
-               </div>
-               <div className="text-xs font-serif text-gray-600 border-l-2 border-gray-300 pl-4 py-1 mx-4">
+               
+               {/* English Poem (Primary) */}
+               <div className="font-serif text-lg mb-3 text-[#2c2c2c] leading-relaxed whitespace-pre-line">
                  <InteractiveText 
-                    text={data.haiku.translation} 
+                    text={data.haiku.english} 
                     onCollect={!isThumbnail ? handleWordCollect : undefined} 
                     highlightedWord={highlightedWord}
                  />
+               </div>
+               
+               {/* Chinese Translation (Secondary) */}
+               <div className="text-xs font-serif-jp text-gray-500 italic border-t border-gray-200 pt-2 mt-2 mx-4">
+                 {data.haiku.chinese}
                </div>
             </div>
 
@@ -363,7 +364,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
              className="px-2 pb-2 relative z-20"
            >
              <p className="text-[9px] text-center text-gray-500 font-serif italic leading-tight line-clamp-3 px-2">
-               "{data.haiku.translation}"
+               "{data.haiku.english}"
              </p>
            </motion.div>
         )}
