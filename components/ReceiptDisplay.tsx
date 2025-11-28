@@ -1,4 +1,6 @@
 
+
+
 import React, { useRef, useState, useEffect } from 'react';
 import { AnalysisResult } from '../types';
 import { Calendar, Thermometer, Wind, Hash, Download, X, Maximize2, Plus } from 'lucide-react';
@@ -31,13 +33,17 @@ const InteractiveText: React.FC<{
   if (!onCollect && !highlightedWord) return <span className={className}>{text}</span>;
 
   // Split by spaces but keep punctuation attached visually or separate tokens
+  // For Chinese support, splitting by space is less effective, so we might want to allow character selection eventually,
+  // but for now, preserving the logic for English words mixed in or if Chinese text has spaces. 
+  // Ideally for Chinese, we'd just render the text. Let's keep it simple for now.
   const words = text.split(/(\s+)/);
 
   return (
     <span className={className}>
       {words.map((segment, i) => {
         // Simple heuristic: if it contains letters, it's a word
-        const isWord = /[a-zA-Z]/.test(segment);
+        // For Chinese, almost every char is a word.
+        const isWord = /[a-zA-Z\u4e00-\u9fa5]/.test(segment);
         const cleanWord = segment.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"");
         
         // Check if this is the highlighted word (Case insensitive)
@@ -63,7 +69,7 @@ const InteractiveText: React.FC<{
               {/* Minimalist Tooltip */}
               {onCollect && !isHighlighted && (
                 <span className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover/word:opacity-100 transition-opacity text-[8px] tracking-widest text-white bg-[#2c2c2c] px-2 py-1 rounded shadow-lg pointer-events-none whitespace-nowrap z-50 font-mono">
-                  COLLECT
+                  收藏 (Collect)
                 </span>
               )}
             </span>
@@ -281,7 +287,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
             {/* Essence (Poetry) */}
             <div className="mb-6 text-center">
                <h3 className="text-[10px] font-bold tracking-widest mb-4 text-gray-400 uppercase flex items-center justify-center gap-2">
-                 <Hash size={10} /> Essence
+                 <Hash size={10} /> 俳句 / Essence
                </h3>
                
                {/* English Poem (Primary) */}
@@ -303,7 +309,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
             <div className="grid grid-cols-1 gap-3 mb-6">
                <div className="border border-gray-200 p-2 relative bg-white/50">
                  <div className="absolute -top-2 left-2 bg-[#fdfbf7] px-1 text-[8px] font-bold text-gray-400 uppercase flex items-center gap-1">
-                   <Wind size={8} /> Auditory
+                   <Wind size={8} /> 听觉 (Auditory)
                  </div>
                  <p className="text-xs text-gray-600 mt-1 leading-tight">
                    <InteractiveText 
@@ -316,7 +322,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
                
                <div className="border border-gray-200 p-2 relative bg-white/50">
                  <div className="absolute -top-2 left-2 bg-[#fdfbf7] px-1 text-[8px] font-bold text-gray-400 uppercase flex items-center gap-1">
-                   <Thermometer size={8} /> Tactile
+                   <Thermometer size={8} /> 触觉 (Tactile)
                  </div>
                  <p className="text-xs text-gray-600 mt-1 leading-tight">
                     <InteractiveText 
@@ -329,7 +335,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
 
                <div className="border border-gray-200 p-2 relative bg-white/50">
                  <div className="absolute -top-2 left-2 bg-[#fdfbf7] px-1 text-[8px] font-bold text-gray-400 uppercase flex items-center gap-1">
-                   <Calendar size={8} /> Olfactory
+                   <Calendar size={8} /> 嗅觉 (Olfactory)
                  </div>
                  <p className="text-xs text-gray-600 mt-1 leading-tight">
                     <InteractiveText 

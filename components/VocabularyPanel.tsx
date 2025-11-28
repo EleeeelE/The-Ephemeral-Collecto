@@ -1,4 +1,6 @@
 
+
+
 import React, { useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Bookmark, X, Grid, Loader2, ArrowUpLeft } from 'lucide-react';
@@ -124,7 +126,7 @@ export const VocabularyPanel: React.FC<VocabularyPanelProps> = ({
                     <div className="h-64 flex flex-col items-center justify-center text-center opacity-40 space-y-4 rounded-2xl shadow-clay-pressed mx-2 border border-white/20">
                        <Bookmark size={32} className="text-gray-400" />
                        <p className="text-[10px] font-mono text-gray-400 max-w-[180px]">
-                         The tray is empty.<br/>Collect words from your receipts.
+                         托盘是空的。<br/>(The tray is empty)<br/>从票据中收集词汇。
                        </p>
                     </div>
                  )}
@@ -195,7 +197,7 @@ export const VocabularyPanel: React.FC<VocabularyPanelProps> = ({
                                     {item.isAnalyzing && !item.analysis && (
                                     <div className="flex items-center gap-2 text-[10px] text-gray-400 font-mono py-2">
                                         <Loader2 size={12} className="animate-spin" />
-                                        <span>DECODING ESSENCE...</span>
+                                        <span>解读中 (Decoding)...</span>
                                     </div>
                                     )}
 
@@ -222,7 +224,7 @@ export const VocabularyPanel: React.FC<VocabularyPanelProps> = ({
                                         className="flex items-center gap-2 px-3 py-1.5 bg-[#e0e5ec] rounded-full text-[9px] font-mono text-gray-600 hover:shadow-clay-flat transition-all active:shadow-clay-pressed uppercase tracking-wider"
                                         >
                                         <ArrowUpLeft size={10} />
-                                        Trace Origin
+                                        溯源 (Trace)
                                         </button>
                                     </div>
                                 </motion.div>

@@ -1,4 +1,8 @@
 
+
+
+
+
 export interface SensoryMoment {
   haiku: {
     english: string;
@@ -53,7 +57,18 @@ export enum AppMode {
   POET = 'POET'
 }
 
-export type CollageStyle = 'newspaper' | 'typewriter' | 'handwritten' | 'magazine-cutout';
+export type CollageStyle = 
+  | 'newspaper' 
+  | 'typewriter' 
+  | 'handwritten' 
+  | 'magazine-cutout' 
+  | 'label' 
+  | 'minimal' 
+  | 'bold-stamp'
+  | 'receipt'
+  | 'prescription'
+  | 'warning'
+  | 'manual';
 
 export interface CollageFragment {
   id: string;
@@ -63,13 +78,24 @@ export interface CollageFragment {
   x: number;
   y: number;
   
+  // New: Image Support
+  type?: 'text' | 'image';
+  imageUrl?: string;
+  
   // Visual Customization Properties
   width?: number; // Optional override
   height?: number; // Optional override
   fontSize?: number;
   backgroundColor?: string;
   color?: string;
+  opacity?: number; // 0 to 1
+  blendMode?: 'normal' | 'multiply' | 'screen' | 'overlay' | 'darken' | 'lighten';
+  
+  // Advanced Typography
   fontFamily?: string;
+  fontWeight?: string; // 'normal' | 'bold'
+  hasShadow?: boolean;
+  
   zIndex?: number;
 }
 
@@ -77,10 +103,31 @@ export interface CollageFragment {
 
 export type VocabularyDifficulty = 'High School' | 'CET-4' | 'CET-6' | 'IELTS/TOEFL' | 'GRE';
 
+export type ColorTheme = 'random' | 'morandi' | 'retro' | 'neon' | 'monochrome' | 'pastel' | 'forest';
+
 export interface GenerationSettings {
   difficulty: VocabularyDifficulty;
   quantity: number; // 10 - 50
   stylePreference: CollageStyle | 'mixed';
+  colorTheme: ColorTheme;
 }
 
 export type CanvasBackground = 'dots' | 'grid' | 'paper' | 'dark' | 'clay';
+
+// --- Export Templates ---
+
+export type ExportTemplate = 'simple' | 'receipt' | 'polaroid' | 'vinyl' | 'newspaper';
+
+export type SealStyle = 'square' | 'circle' | 'oval';
+
+// --- Doodle Types ---
+
+export type BrushType = 'pen' | 'marker' | 'highlighter';
+
+export interface DoodleStroke {
+  id: string;
+  points: { x: number; y: number }[];
+  color: string;
+  width: number;
+  type: BrushType;
+}

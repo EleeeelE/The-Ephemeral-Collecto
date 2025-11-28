@@ -1,3 +1,5 @@
+
+
 import React, { useRef, useState } from 'react';
 import { Upload, Image as ImageIcon, Loader2 } from 'lucide-react';
 import { ClayCard } from './ClayCard';
@@ -56,7 +58,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ onImageSelected, isLoadi
                </div>
                <h2 className="text-lg font-mono text-gray-600 mb-2">OBSERVING...</h2>
                <p className="text-xs text-gray-400 max-w-[200px]">
-                 Decoding the passage of time...
+                 正在解构时间的痕迹...
                </p>
             </div>
         ) : (
@@ -72,12 +74,13 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ onImageSelected, isLoadi
             </div>
             
             <h3 className="text-xl font-dot text-gray-700 mb-3 tracking-widest uppercase">
-              Insert Ephemera
+              放入拾遗物
             </h3>
             
             <p className="text-sm text-gray-500 font-mono max-w-[260px] leading-relaxed mb-8">
-              Upload an object or scene that shows the touch of time. <br/>
-              <span className="text-[10px] opacity-60">(Tap to open camera roll)</span>
+              上传一张带有时间痕迹的照片。<br/>
+              (Upload Ephemera) <br/>
+              <span className="text-[10px] opacity-60">(点击打开图库)</span>
             </p>
 
             {/* Visual Hint */}
@@ -94,14 +97,14 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ onImageSelected, isLoadi
         
         {isDragging && (
            <div className="absolute inset-0 bg-clay-base/50 backdrop-blur-sm flex items-center justify-center z-10">
-             <p className="font-bold text-gray-600 tracking-widest">RELEASE TO COLLECT</p>
+             <p className="font-bold text-gray-600 tracking-widest">松开以拾取</p>
            </div>
         )}
       </ClayCard>
       
       <div className="mt-8 text-center space-y-2">
          <div className="inline-block px-4 py-1 rounded-full bg-gray-200/50 text-[10px] font-mono text-gray-500 shadow-inner">
-            SUPPORTED: RUST, FADING, WILTED FLOWERS, RAIN
+            支持: 锈迹, 褪色, 枯萎, 雨痕
          </div>
       </div>
     </div>
